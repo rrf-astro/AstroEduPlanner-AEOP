@@ -63,8 +63,8 @@ A ferramenta oferece duas interfaces principais para atender a diferentes necess
 
 1. **Clone o repositório**:
    ```bash
-   git clone https://github.com/seu-usuario/Skyler-Testes.git
-   cd Skyler-Testes
+   git clone https://github.com/rrf-astro/AstroEduPlanner-AEOP.git
+   cd AstroEduPlanner
    ```
 
 2. **Crie um ambiente virtual** (recomendado):
