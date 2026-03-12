@@ -19,27 +19,27 @@ from src.analysis import (
 
 @pytest.fixture(scope="module")
 def observer_location():
-    """Fixture para uma localização de observador (São Paulo)."""
+    """Fixture providing an observer location (São Paulo, Brazil)."""
     return get_location_from_city("São Paulo, Brazil")
 
 @pytest.fixture(scope="module")
 def observer_timezone(observer_location):
-    """Fixture para o fuso horário do observador."""
+    """Fixture providing the observer's timezone."""
     return set_timezone_for_sao_paulo(observer_location)
 
 @pytest.fixture(scope="module")
 def southern_target():
-    """Fixture para um alvo no hemisfério celestial sul (Sirius)."""
+    """Fixture for a target in the southern celestial hemisphere (Sirius)."""
     return SkyCoord.from_name('Sirius')
 
 @pytest.fixture(scope="module")
 def northern_target():
-    """Fixture para um alvo no hemisfério celestial norte (Polaris)."""
+    """Fixture for a target in the northern celestial hemisphere (Polaris)."""
     return SkyCoord.from_name('Polaris')
 
 def test_calculate_nightly_events(observer_location, observer_timezone):
     """
-    Testa se os eventos noturnos são calculados corretamente.
+    Tests that nightly events are computed correctly and contain expected keys.
     """
     test_date = date(2023, 1, 15)
     events = calculate_nightly_events(test_date, observer_location, observer_timezone)
@@ -53,9 +53,9 @@ def test_calculate_nightly_events(observer_location, observer_timezone):
 
 def test_analyze_target_visibility_for_night_visible(observer_location, observer_timezone, southern_target):
     """
-    Testa a análise de visibilidade para um alvo que deve estar visível.
+    Tests visibility analysis for a target that should be observable.
     """
-    # CORREÇÃO: Mudar a data para janeiro, quando Sirius é visível no hemisfério sul.
+    # Use January, when Sirius is visible from the southern hemisphere.
     test_date = date(2023, 1, 15)
     events = calculate_nightly_events(test_date, observer_location, observer_timezone)
     df = analyze_target_visibility_for_night(
@@ -69,7 +69,7 @@ def test_analyze_target_visibility_for_night_visible(observer_location, observer
 
 def test_analyze_target_visibility_for_night_not_visible(observer_location, observer_timezone, northern_target):
     """
-    Testa a análise de visibilidade para um alvo que não deve estar visível.
+    Tests that a target unobservable from the southern hemisphere returns an empty DataFrame.
     """
     test_date = date(2023, 6, 15)
     events = calculate_nightly_events(test_date, observer_location, observer_timezone)
@@ -80,14 +80,14 @@ def test_analyze_target_visibility_for_night_not_visible(observer_location, obse
 
 def test_check_hemisphere_visibility(observer_location, southern_target, northern_target):
     """
-    Testa a lógica de verificação de hemisfério.
+    Tests the hemisphere visibility pre-filter logic.
     """
     assert check_hemisphere_visibility(observer_location, southern_target) == True
     assert check_hemisphere_visibility(observer_location, northern_target) == False
 
 def test_analyze_moon_impact(observer_location, southern_target):
     """
-    Testa a análise de impacto da Lua.
+    Tests that lunar impact analysis returns illumination and separation values.
     """
     time = Time('2023-01-15T23:00:00')
     moon_analysis = analyze_moon_impact(time, observer_location, southern_target)
@@ -100,7 +100,7 @@ def test_analyze_moon_impact(observer_location, southern_target):
 
 def test_analyze_year_visibility(observer_location, observer_timezone, southern_target):
     """
-    Testa a função de análise anual para garantir que ela retorna a estrutura correta.
+    Tests that the annual visibility function returns a correctly structured DataFrame.
     """
     year = 2023
     min_altitude = 30 * u.deg

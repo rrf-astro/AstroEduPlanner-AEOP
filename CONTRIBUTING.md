@@ -1,51 +1,51 @@
-# Como Contribuir
+# Contributing to AstroEduPlanner (AEOP)
 
-Obrigado por seu interesse em contribuir com o **Analisador de Visibilidade Astronômica**! Este projeto é voltado para a comunidade educacional e suas contribuições são muito bem-vindas.
+Thank you for your interest in contributing to **AstroEduPlanner (AEOP)**! This project is aimed at the educational community and contributions of all kinds are warmly welcome.
 
-## 🚀 Começando
+## 🚀 Getting Started
 
-1. **Fork o repositório**
-2. **Clone seu fork**:
+1. **Fork the repository**
+2. **Clone your fork**:
    ```bash
-   git clone https://github.com/seu-usuario/Skyler-Testes.git
-   cd Skyler-Testes
+   git clone https://github.com/PLACEHOLDER-username/AstroEduPlanner-AEOP.git
+   cd AstroEduPlanner-AEOP
    ```
-3. **Crie um ambiente virtual**:
+3. **Create a virtual environment** (recommended):
    ```bash
    python3 -m venv venv
-   source venv/bin/activate  # No Windows: venv\\Scripts\\activate
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
    ```
-4. **Instale as dependências**:
+4. **Install dependencies**:
    ```bash
    pip install -r requirements.txt
    ```
 
-## 🔧 Desenvolvimento
+## 🔧 Development
 
-### Estrutura do Projeto
+### Project Structure
 
-- `src/`: Código-fonte modular
-  - `config.py`: Configurações e importações centralizadas
-  - `location.py`: Funções de geolocalização
-  - `targets.py`: Gerenciamento de alvos astronômicos
-  - `analysis.py`: Cálculos de visibilidade
-  - `plotting.py`: Visualizações
-- `tests/`: Testes unitários com pytest
-- `app.py`: Aplicação web Streamlit
-- `analise_astronomica.ipynb`: Interface Jupyter Notebook
+- `src/` — Modular source code
+  - `config.py` — Centralised configuration and imports
+  - `location.py` — Geolocation utilities
+  - `targets.py` — Astronomical target management
+  - `analysis.py` — Visibility calculations
+  - `plotting.py` — Visualisation routines
+- `tests/` — Unit tests with pytest
+- `app.py` — Streamlit web application
+- `analise_astronomica.ipynb` — Jupyter Notebook interface
 
-### Executando os Testes
+### Running the Tests
 
 ```bash
 pytest tests/
 ```
 
-Para executar com cobertura:
+With coverage report:
 ```bash
 pytest --cov=src tests/
 ```
 
-### Executando a Aplicação
+### Running the Application
 
 **Streamlit:**
 ```bash
@@ -57,87 +57,88 @@ streamlit run app.py
 jupyter notebook analise_astronomica.ipynb
 ```
 
-## 📝 Diretrizes de Contribuição
+## 📝 Contribution Guidelines
 
-### Tipos de Contribuições
+### Types of Contributions
 
-- 🐛 **Correções de bugs**: Reporte ou corrija bugs
-- ✨ **Novas funcionalidades**: Adicione recursos úteis
-- 📚 **Documentação**: Melhore README, docstrings, exemplos
-- 🧪 **Testes**: Aumente a cobertura de testes
-- 🌐 **Tradução**: Ajude a internacionalizar o projeto
+- 🐛 **Bug fixes** — Report or fix bugs via GitHub Issues
+- ✨ **New features** — Add useful functionality
+- 📚 **Documentation** — Improve README, docstrings, or examples
+- 🧪 **Tests** — Increase test coverage
+- 🌐 **Translation** — Help internationalise the project
 
-### Processo de Contribuição
+### Contribution Workflow
 
-1. **Crie uma issue** descrevendo o que pretende fazer
-2. **Crie um branch** para sua feature:
+1. **Open an issue** describing what you intend to do
+2. **Create a branch** for your feature:
    ```bash
-   git checkout -b feature/minha-feature
+   git checkout -b feature/my-feature
    ```
-3. **Faça suas alterações** seguindo as diretrizes de código
-4. **Escreva/atualize testes** para suas mudanças
-5. **Execute os testes** para garantir que tudo funciona
-6. **Commit suas mudanças** com mensagens descritivas:
+3. **Make your changes** following the code style guidelines below
+4. **Write or update tests** for your changes
+5. **Run the tests** to ensure everything passes
+6. **Commit your changes** with descriptive messages:
    ```bash
-   git commit -m "Adiciona funcionalidade X"
+   git commit -m "Add moon phase calculation to nightly analysis"
    ```
-7. **Push para seu fork**:
+7. **Push to your fork**:
    ```bash
-   git push origin feature/minha-feature
+   git push origin feature/my-feature
    ```
-8. **Abra um Pull Request** descrevendo suas mudanças
+8. **Open a Pull Request** with a clear description of your changes
 
-### Estilo de Código
+### Code Style
 
-- Siga a [PEP 8](https://pep8.org/) para código Python
-- Use nomes de variáveis e funções descritivos em português
-- Adicione docstrings para todas as funções públicas
-- Mantenha linhas com no máximo 100 caracteres
-- Use type hints quando apropriado
+- Follow [PEP 8](https://pep8.org/) for Python code
+- Use clear, descriptive variable and function names in English
+- Add docstrings to all public functions (NumPy or Google style)
+- Keep lines to a maximum of 100 characters
+- Use type hints where appropriate
 
-### Mensagens de Commit
+### Commit Messages
 
-Use mensagens claras e descritivas:
-- ✅ "Adiciona cálculo de fase da Lua"
-- ✅ "Corrige bug na plotagem de alvos circumpolares"
-- ❌ "Update"
-- ❌ "Fix"
+Use clear, descriptive commit messages:
+- ✅ `Add moon phase calculation to nightly analysis`
+- ✅ `Fix altitude plot x-axis formatting for short nights`
+- ❌ `Update`
+- ❌ `Fix`
 
-## 🧪 Escrevendo Testes
+## 🧪 Writing Tests
 
-Todos os novos recursos devem incluir testes. Use pytest e siga o padrão existente:
+All new features must include tests. Use pytest and follow the existing patterns:
 
 ```python
-def test_minha_funcao():
-    """Testa se minha_funcao retorna o valor esperado."""
-    resultado = minha_funcao(parametro)
-    assert resultado == valor_esperado
+def test_my_function():
+    """Test that my_function returns the expected value."""
+    result = my_function(parameter)
+    assert result == expected_value
 ```
 
-## 📚 Documentação
+## 📚 Documentation
 
-- Adicione docstrings para novas funções:
-  ```python
-  def minha_funcao(parametro):
-      """
-      Descrição breve da função.
-      
-      Args:
-          parametro: Descrição do parâmetro
-          
-      Returns:
-          Descrição do retorno
-      """
-  ```
-- Atualize o README.md se adicionar funcionalidades importantes
-- Inclua exemplos de uso quando relevante
+Add docstrings to new functions following this style:
 
-## 🤝 Código de Conduta
+```python
+def my_function(parameter):
+    """
+    Brief description of the function.
 
-Este projeto segue o [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md). Ao participar, você concorda em seguir suas diretrizes.
+    Args:
+        parameter: Description of the parameter.
 
-## 💡 Dúvidas?
+    Returns:
+        Description of the return value.
+    """
+```
 
-Se tiver dúvidas sobre como contribuir, abra uma issue ou entre em contato com os mantenedores do projeto.
+Update `README.md` if you add significant new features, and include usage examples where relevant.
 
-**Obrigado por contribuir! 🌟**
+## 🤝 Code of Conduct
+
+This project follows the [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md). By participating, you agree to abide by its terms.
+
+## 💡 Questions?
+
+If you have questions about contributing, open an issue or reach out to the project maintainers via GitHub Discussions.
+
+**Thank you for contributing! 🌟**

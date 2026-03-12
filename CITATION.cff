@@ -1,0 +1,44 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "AstroEduPlanner (AEOP): An Open-Source Python Tool for Astronomical Observation Planning in Educational Contexts"
+version: "1.0.0"
+date-released: "2025-11-24"
+license: MIT
+repository-code: "https://github.com/PLACEHOLDER-username/AstroEduPlanner-AEOP"
+url: "https://github.com/PLACEHOLDER-username/AstroEduPlanner-AEOP"
+doi: "PLACEHOLDER: 10.5281/zenodo.XXXXXXX"
+abstract: >
+  AstroEduPlanner (AEOP) is an open-source, Python-based educational tool
+  for planning astronomical observations. It provides a dual interface —
+  a no-code Streamlit web application and an interactive Jupyter Notebook —
+  built on the Astropy and Astroplan libraries. The tool enables teachers,
+  students, and amateur astronomers to analyse the visibility of celestial
+  objects from any location on Earth, compute lunar interference, and
+  integrate real-time weather forecasts.
+authors:
+  - family-names: "PLACEHOLDER"
+    given-names: "PLACEHOLDER"
+    orcid: "https://orcid.org/0000-0000-0000-0000"
+    affiliation: "PLACEHOLDER: Institution Name, Country"
+keywords:
+  - astronomy
+  - education
+  - observation-planning
+  - python
+  - astropy
+  - astroplan
+  - streamlit
+  - jupyter
+  - open-source
+  - brazil
+preferred-citation:
+  type: article
+  authors:
+    - family-names: "PLACEHOLDER"
+      given-names: "PLACEHOLDER"
+      orcid: "https://orcid.org/0000-0000-0000-0000"
+  title: "AstroEduPlanner (AEOP): An Open-Source Python Tool for Astronomical Observation Planning in Educational Contexts"
+  journal: "Journal of Open Source Education"
+  year: PLACEHOLDER
+  doi: "PLACEHOLDER"

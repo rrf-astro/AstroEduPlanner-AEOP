@@ -1,5 +1,7 @@
 # 🔭 AstroEduPlanner (AEOP): An Open-Source Educational Astronomical Observation Planner
 
+[![Tests](https://github.com/PLACEHOLDER-username/AstroEduPlanner-AEOP/actions/workflows/tests.yml/badge.svg)](https://github.com/PLACEHOLDER-username/AstroEduPlanner-AEOP/actions/workflows/tests.yml)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.XXXXXXX.svg)](https://doi.org/10.5281/zenodo.XXXXXXX)
 [![Python Version](https://img.shields.io/badge/python-3.8%2B-blue)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
@@ -31,23 +33,27 @@
 AstroEduPlanner-AEOP/
 ├── README.md                    # This file (English)
 ├── README_PT.md                 # Portuguese version
-├── LICENSE                      # MIT License
+├── LICENSE                      # MIT Licence
+├── CITATION.cff                 # Machine-readable citation metadata
 ├── requirements.txt             # Python dependencies
 ├── pyproject.toml               # Build configuration
+├── paper.md                     # JOSE submission paper
+├── paper.bib                    # BibTeX references
+├── figures/                     # Figures for the paper
 ├── app.py                       # Streamlit web application
-├── analise_astronomica.ipynb    # Interactive Jupyter Notebook (PT)
-├── analise_astronomica_EN.ipynb # Interactive Jupyter Notebook (EN)
-├── create_notebook.py           # Notebook generation script
+├── analise_astronomica.ipynb    # Interactive Jupyter Notebook
 ├── src/                         # Modular source code
 │   ├── config.py               # Centralised configuration
 │   ├── location.py             # Geolocation utilities
 │   ├── targets.py              # Target management
 │   ├── analysis.py             # Astronomical calculations
 │   └── plotting.py             # Visualisation routines
-└── tests/                       # pytest test suite
-    ├── test_analysis.py
-    ├── test_location.py
-    └── test_targets.py
+├── tests/                       # pytest test suite
+│   ├── test_analysis.py
+│   ├── test_location.py
+│   └── test_targets.py
+└── .github/workflows/
+    └── tests.yml                # Continuous integration (GitHub Actions)
 ```
 
 ---
@@ -205,6 +211,44 @@ This project is licensed under the MIT License — see [LICENSE](LICENSE) for de
 
 - **Issues** — Report bugs or suggest features via [GitHub Issues](https://github.com/rrf-astro/AstroEduPlanner-AEOP/issues)
 - **Discussions** — Join the conversation on [GitHub Discussions](https://github.com/rrf-astro/AstroEduPlanner-AEOP/discussions)
+
+---
+
+## 🔗 Related Software
+
+AEOP occupies a distinct niche among existing tools:
+
+| Tool | Type | Target Audience | Key Limitation for Education |
+|---|---|---|---|
+| [Stellarium](https://stellarium.org/) | Desktop/Web GUI | General public | No programmatic API; cannot be scripted for classroom exercises |
+| [Cartes du Ciel](https://www.ap-i.net/skychart/) | Desktop GUI | Amateur astronomers | Windows-centric; no Python integration |
+| [Skyfield](https://rhodesmill.org/skyfield/) | Python library | Developers | No educational interface; requires programming expertise |
+| [astroplan](https://astroplan.readthedocs.io/) | Python library | Research astronomers | Designed for observatory scheduling, not pedagogy |
+| **AEOP** | Python app (dual interface) | **Students & teachers** | — |
+
+AEOP uniquely combines a **no-code web interface** (Streamlit) with a **programmable Jupyter Notebook**, both built on the same modular scientific backend, making it appropriate for a continuum of users from secondary school students to undergraduate researchers.
+
+---
+
+## 📖 Citation
+
+If you use AstroEduPlanner (AEOP) in your research or teaching, please cite:
+
+```bibtex
+@article{PLACEHOLDER_JOSE_2025,
+  author  = {PLACEHOLDER: Author Names},
+  title   = {AstroEduPlanner (AEOP): An Open-Source Python Tool for
+             Astronomical Observation Planning in Educational Contexts},
+  journal = {Journal of Open Source Education},
+  year    = {PLACEHOLDER},
+  volume  = {PLACEHOLDER},
+  number  = {PLACEHOLDER},
+  pages   = {PLACEHOLDER},
+  doi     = {PLACEHOLDER}
+}
+```
+
+A machine-readable citation file is available at [`CITATION.cff`](CITATION.cff).
 
 ---
 

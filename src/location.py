@@ -1,17 +1,18 @@
 # src/location.py
 
 """
-Módulo de Localização.
-... (comentários como antes) ...
+Location Module.
+Provides utilities for resolving city names to geographic coordinates
+and for determining the observer's timezone.
 """
 
-# CORREÇÃO: Importar dependências diretamente, não via config.
+# Fix: Import dependencies directly, not via config.
 try:
     from geopy.geocoders import Nominatim
     from geopy.exc import GeocoderTimedOut, GeocoderUnavailable
     GEOPY_USABLE = True
 except ImportError:
-    # Se o geopy não estiver instalado, define uma flag para desativar a funcionalidade
+    # If geopy is not installed, set a flag to disable the functionality
     Nominatim = None
     GeocoderTimedOut = None
     GeocoderUnavailable = None
@@ -23,14 +24,22 @@ from astropy.coordinates import EarthLocation
 
 def get_location_from_city(city_name_input, altitude_meters=None):
     """
-    Tenta transformar o nome de uma cidade em coordenadas geográficas usando um serviço online.
-    ... (docstring como antes) ...
+    Attempts to convert a city name into geographic coordinates using an online service.
+
+    Args:
+        city_name_input (str): City name (e.g. "São Paulo, Brazil").
+        altitude_meters (float, optional): Observer altitude in metres above sea level.
+            Defaults to 0 if not provided.
+
+    Returns:
+        astropy.coordinates.EarthLocation or None: Location object if successful,
+            None if the city was not found or the service is unavailable.
     """
     if not GEOPY_USABLE:
-        print("AVISO: A biblioteca 'geopy' não está disponível. Não é possível buscar a cidade pelo nome.")
+        print("WARNING: The 'geopy' library is not available. Cannot resolve city name to coordinates.")
         return None
 
-    print(f"Buscando coordenadas geográficas para: '{city_name_input}'...")
+    print(f"Searching geographic coordinates for: '{city_name_input}'...")
     try:
         geolocator = Nominatim(user_agent="astro_planner_modular/1.0")
         location_data = geolocator.geocode(city_name_input, timeout=10)
@@ -40,27 +49,29 @@ def get_location_from_city(city_name_input, altitude_meters=None):
             longitude = location_data.longitude
             altitude = altitude_meters if altitude_meters is not None else 0
 
-            print(f"  Localização encontrada: Latitude {latitude:.4f}°, Longitude {longitude:.4f}°")
-            print(f"  Altitude definida como: {altitude}m")
+            print(f"  Location found: Latitude {latitude:.4f}°, Longitude {longitude:.4f}°")
+            print(f"  Altitude set to: {altitude}m")
 
             return EarthLocation(lat=latitude*u.deg, lon=longitude*u.deg, height=altitude*u.m)
         else:
-            print(f"  Não foi possível encontrar coordenadas para '{city_name_input}'. Verifique o nome.")
+            print(f"  Could not find coordinates for '{city_name_input}'. Please check the name.")
             return None
 
     except (GeocoderTimedOut, GeocoderUnavailable) as e:
-        print(f"  Serviço de geocodificação indisponível ou demorou para responder: {e}")
+        print(f"  Geocoding service unavailable or timed out: {e}")
         return None
     except Exception as e:
-        print(f"  Ocorreu um erro inesperado ao buscar as coordenadas da cidade: {e}")
+        print(f"  An unexpected error occurred while fetching city coordinates: {e}")
         return None
 
 def set_location_for_uberaba():
     """
-    Função de conveniência para configurar rapidamente a localização para Uberaba, MG.
-    ... (docstring como antes) ...
+    Convenience function to quickly set the observer location to Uberaba, MG, Brazil.
+
+    Returns:
+        astropy.coordinates.EarthLocation: Hardcoded coordinates for Uberaba.
     """
-    print("Configurando localização de teste para Uberaba, MG, Brasil.")
+    print("Setting test location to Uberaba, MG, Brazil.")
     uberaba_lat = -19.7485
     uberaba_lon = -47.9318
     uberaba_alt = 823
@@ -68,12 +79,19 @@ def set_location_for_uberaba():
 
 def set_timezone_for_sao_paulo(location):
     """
-    Define o fuso horário como 'America/Sao_Paulo' se a localização estiver na área.
+    Returns the 'America/Sao_Paulo' timezone if the location falls within the Brazilian region.
+
+    Args:
+        location (astropy.coordinates.EarthLocation): Observer location.
+
+    Returns:
+        pytz.timezone or None: Timezone object if inside the Brazilian bounding box,
+            None otherwise.
     """
-    # Lógica simples para verificar se está na região de São Paulo
+    # Simple bounding box check for the Brazilian longitude/latitude range
     if -53 < location.lon.deg < -34 and -34 < location.lat.deg < 5:
         return pytz.timezone('America/Sao_Paulo')
-    return None # Retorna None se estiver fora da área
+    return None  # Returns None if outside the area
 
 
-print("Módulo de Localização (src/location.py) carregado.")
+print("Location module (src/location.py) loaded.")

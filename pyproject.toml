@@ -3,16 +3,16 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "skyler-astro"
+name = "astroedu-planner"
 version = "1.0.0"
-description = "Ferramenta educacional para planejamento de observações astronômicas"
+description = "Open-source educational tool for astronomical observation planning"
 readme = "README.md"
 requires-python = ">=3.8"
 license = {text = "MIT"}
 authors = [
-    {name = "Projeto Skyler", email = "skyler@example.com"}
+    {name = "PLACEHOLDER: Author Full Name", email = "PLACEHOLDER@institution.edu"}
 ]
-keywords = ["astronomy", "observation", "planning", "education", "astropy"]
+keywords = ["astronomy", "observation", "planning", "education", "astropy", "open-source"]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Education",
@@ -54,13 +54,10 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/seu-usuario/Skyler-Testes"
-Documentation = "https://github.com/seu-usuario/Skyler-Testes/blob/main/README.md"
-Repository = "https://github.com/seu-usuario/Skyler-Testes"
-"Bug Tracker" = "https://github.com/seu-usuario/Skyler-Testes/issues"
-
-[project.scripts]
-skyler-streamlit = "streamlit:run app.py"
+Homepage = "https://github.com/PLACEHOLDER-username/AstroEduPlanner-AEOP"
+Documentation = "https://github.com/PLACEHOLDER-username/AstroEduPlanner-AEOP/blob/main/README.md"
+Repository = "https://github.com/PLACEHOLDER-username/AstroEduPlanner-AEOP"
+"Bug Tracker" = "https://github.com/PLACEHOLDER-username/AstroEduPlanner-AEOP/issues"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

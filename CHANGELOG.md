@@ -1,50 +1,51 @@
 # Changelog
 
-Todas as mudanças notáveis neste projeto serão documentadas neste arquivo.
+All notable changes to this project will be documented in this file.
 
-O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
-e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [1.0.0] - 2025-11-24
 
-### Adicionado
-- Interface web interativa com Streamlit
-- Jupyter Notebook para análises customizadas
-- Análise de visibilidade noturna para múltiplos alvos
-- Calendário anual de visibilidade com heatmap
-- Suporte para alvos de céu profundo via SIMBAD
-- Cálculo de posições de planetas e corpos do sistema solar
-- Análise de impacto da Lua (iluminação e separação angular)
-- Integração com API Open-Meteo para previsão meteorológica
-- Geolocalização automática via nome de cidade
-- Suite completa de testes com pytest
-- Documentação abrangente (README, CONTRIBUTING, CODE_OF_CONDUCT)
-- Configuração de CI/CD com GitHub Actions
-- Licença MIT para uso educacional livre
+### Added
+- Interactive web interface with Streamlit (no programming required)
+- Jupyter Notebook for customisable analyses and scientific Python education
+- Nightly visibility analysis for multiple targets (altitude vs. time plots with twilight regions)
+- Annual visibility calendar with heatmap (colour-coded by hours of visibility)
+- **Sky map (polar projection)** — Interactive sky chart showing target positions above the horizon at any selected time, available in both Streamlit (via `st.slider`) and Jupyter Notebook (via `ipywidgets.IntSlider`)
+- Deep-sky target support via SIMBAD (Astroquery) with fallback to SkyCoord name resolver
+- Solar System body positions for 10 objects (Sun, Moon, planets, Pluto) at any epoch
+- Hemisphere visibility pre-filter to skip observationally inaccessible targets
+- Lunar impact analysis: illumination percentage and angular separation from target
+- Weather forecast integration via Open-Meteo API (cloud cover for next observing night)
+- Automatic geolocation from city name (Nominatim/geopy)
+- Minimum elevation constraint (configurable, default 30°)
+- Complete pytest test suite covering analysis, location, and target modules
+- Comprehensive documentation (README, CONTRIBUTING, CODE_OF_CONDUCT)
+- MIT Licence for free educational use
 
-### Módulos Implementados
-- `src/config.py` - Configurações centralizadas
-- `src/location.py` - Funções de geolocalização
-- `src/targets.py` - Gerenciamento de alvos astronômicos
-- `src/analysis.py` - Cálculos de visibilidade e eventos noturnos
-- `src/plotting.py` - Visualizações (gráficos e heatmaps)
+### Modules
+- `src/config.py` — Centralised imports and global configuration
+- `src/location.py` — City-name geocoding and timezone utilities
+- `src/targets.py` — Deep-sky and Solar System target management
+- `src/analysis.py` — Visibility calculations, lunar impact, and weather forecast
+- `src/plotting.py` — Altitude plots, sky maps, and annual heatmaps
 
-### Testes
-- `tests/test_analysis.py` - Testes para módulo de análise
-- `tests/test_location.py` - Testes para geolocalização
-- `tests/test_targets.py` - Testes para gerenciamento de alvos
+### Tests
+- `tests/test_analysis.py` — Tests for the analysis module
+- `tests/test_location.py` — Tests for geolocation
+- `tests/test_targets.py` — Tests for target management
 
 ---
 
 ## [Unreleased]
 
-### Planejado
-- Tradução para inglês e espanhol
-- Suporte para catálogos customizados
-- Exportação de resultados em PDF
-- Modo offline para uso sem internet
-- App mobile (versão futura)
-- Integração com telescópios automatizados
+### Planned
+- Support for custom target catalogues (CSV/FITS)
+- PDF export of observation reports
+- Offline mode (cached ephemerides)
+- Spanish localisation
+- Integration with automated telescope mounts
 
 ---
 

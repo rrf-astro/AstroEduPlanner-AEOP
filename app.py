@@ -38,7 +38,7 @@ else:
         except ValueError:
             st.sidebar.error("Formato inválido. Use 'lat,lon'.")
 
-if observer_location:
+if observer_location is not None:
     st.session_state['observer_location'] = observer_location
     st.sidebar.success(f"Localização definida: {observer_location.lat.deg:.2f}, {observer_location.lon.deg:.2f}")
 elif 'observer_location' in st.session_state:

@@ -1,8 +1,9 @@
 # src/analysis.py
 
 """
-Módulo de Análise Astronômica.
-... (comentários como antes) ...
+Astronomical Analysis Module.
+Contains functions for computing nightly events, target visibility,
+lunar impact, weather forecast integration, and annual visibility calendars.
 """
 from astroplan import Observer
 from .config import (
@@ -12,13 +13,23 @@ from .config import (
 
 def calculate_nightly_events(analysis_date, observer_location, observer_timezone):
     """
-    Calcula os horários do pôr do sol, crepúsculo astronômico e nascer do sol.
+    Calculates sunset, astronomical twilight, and sunrise times for a given date.
+
+    Args:
+        analysis_date (datetime.date): The date to analyse.
+        observer_location (astropy.coordinates.EarthLocation): Observer's location.
+        observer_timezone (pytz.timezone): Observer's local timezone.
+
+    Returns:
+        dict: Dictionary with keys 'inicio_noite', 'fim_noite', 'por_do_sol',
+              'nascer_do_sol', 'meia_noite_real' as astropy Time objects.
+              Returns an empty dict on failure.
     """
     try:
         observer = Observer(location=observer_location, timezone=observer_timezone)
         time_midday = Time(f"{analysis_date.strftime('%Y-%m-%d')} 12:00:00")
 
-        # CORREÇÃO: Remover a chamada .astimezone(). O Observer já retorna o tempo no fuso correto.
+        # Fix: Remove .astimezone() call. Observer already returns time in the correct timezone.
         sunset_time = observer.sun_set_time(time_midday, which='next')
         sunrise_time = observer.sun_rise_time(time_midday, which='next')
         evening_astro_twilight = observer.twilight_evening_astronomical(time_midday, which='next')
@@ -33,12 +44,23 @@ def calculate_nightly_events(analysis_date, observer_location, observer_timezone
             "meia_noite_real": midnight_time
         }
     except Exception as e:
-        print(f"Aviso: Não foi possível calcular os eventos noturnos para {analysis_date}. Erro: {e}")
+        print(f"Warning: Could not calculate nightly events for {analysis_date}. Error: {e}")
         return {}
 
 def analyze_target_visibility_for_night(start_time, end_time, observer_location, target_coord, min_altitude):
     """
-    Calcula a altitude de um alvo ao longo de uma noite.
+    Computes the altitude of a target throughout a single night at 5-minute intervals.
+
+    Args:
+        start_time (astropy.time.Time): Start of the observing window (evening twilight).
+        end_time (astropy.time.Time): End of the observing window (morning twilight).
+        observer_location (astropy.coordinates.EarthLocation): Observer's location.
+        target_coord (astropy.coordinates.SkyCoord): Target sky coordinates.
+        min_altitude (astropy.units.Quantity): Minimum observable altitude.
+
+    Returns:
+        pandas.DataFrame: Rows where the target is above min_altitude,
+            with columns 'time' and 'altitude'. Empty if never above threshold.
     """
     time_range = pd.date_range(start=start_time.to_datetime(), end=end_time.to_datetime(), freq='5min')
     if time_range.empty:
@@ -54,7 +76,17 @@ def analyze_target_visibility_for_night(start_time, end_time, observer_location,
 
 def check_hemisphere_visibility(observer_location, target_coord):
     """
-    Verifica se um alvo é potencialmente visível do hemisfério do observador.
+    Checks whether a target is potentially observable from the observer's hemisphere.
+
+    Applies a simple declination filter: targets more than 30° into the opposite
+    hemisphere are considered unobservable.
+
+    Args:
+        observer_location (astropy.coordinates.EarthLocation): Observer's location.
+        target_coord (astropy.coordinates.SkyCoord): Target sky coordinates.
+
+    Returns:
+        bool: True if the target may be observable, False otherwise.
     """
     observer_lat = observer_location.lat.deg
     target_dec = target_coord.dec.deg
@@ -64,7 +96,16 @@ def check_hemisphere_visibility(observer_location, target_coord):
 
 def analyze_moon_impact(time, observer_location, target_coord):
     """
-    Calcula a iluminação da Lua e sua separação angular de um alvo.
+    Calculates the Moon's illumination fraction and its angular separation from a target.
+
+    Args:
+        time (astropy.time.Time): Time of observation.
+        observer_location (astropy.coordinates.EarthLocation): Observer's location.
+        target_coord (astropy.coordinates.SkyCoord): Target sky coordinates.
+
+    Returns:
+        dict: Dictionary with keys 'moon_illumination' (float, 0–100 %)
+              and 'moon_separation' (astropy Quantity in degrees).
     """
     moon = get_body("moon", time, location=observer_location)
     frame = AltAz(obstime=time, location=observer_location)
@@ -79,7 +120,15 @@ def analyze_moon_impact(time, observer_location, target_coord):
 
 def get_weather_forecast(lat, lon):
     """
-    Obtém a previsão do tempo para 7 dias usando a API Open-Meteo.
+    Retrieves average cloud cover for the coming night using the Open-Meteo API.
+
+    Args:
+        lat (float): Observer latitude in decimal degrees.
+        lon (float): Observer longitude in decimal degrees.
+
+    Returns:
+        str: Average cloud cover as a percentage string (e.g. "23.4%"),
+             or "N/A" if the request fails or no data is available.
     """
     try:
         url = f"https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}&hourly=cloudcover&forecast_days=2"
@@ -106,13 +155,25 @@ def get_weather_forecast(lat, lon):
 
 def analyze_year_visibility(year, observer_location, observer_timezone, target_coord, min_altitude):
     """
-    Analisa a visibilidade de um alvo para cada noite de um ano inteiro.
+    Analyses the visibility of a target for every night of a full year.
+
+    Args:
+        year (int): The year to analyse.
+        observer_location (astropy.coordinates.EarthLocation): Observer's location.
+        observer_timezone (pytz.timezone): Observer's local timezone.
+        target_coord (astropy.coordinates.SkyCoord): Target sky coordinates.
+        min_altitude (astropy.units.Quantity): Minimum observable altitude.
+
+    Returns:
+        pandas.DataFrame: One row per visible night, with columns
+            'date', 'start_time', 'end_time', 'duration_hours'.
+            Empty DataFrame if the target is never visible.
     """
     start_date = date(year, 1, 1)
     end_date = date(year, 12, 31)
     results = []
 
-    for day_offset in tqdm(range((end_date - start_date).days + 1), desc=f"Analisando {year}", unit="dia"):
+    for day_offset in tqdm(range((end_date - start_date).days + 1), desc=f"Analysing {year}", unit="night"):
         current_date = start_date + timedelta(days=day_offset)
         with np.errstate(all='ignore'):
             night_events = calculate_nightly_events(current_date, observer_location, observer_timezone)
@@ -133,4 +194,4 @@ def analyze_year_visibility(year, observer_location, observer_timezone, target_c
             })
     return pd.DataFrame(results)
 
-print("Módulo de Análise (src/analysis.py) carregado e aprimorado.")
+print("Analysis module (src/analysis.py) loaded.")
