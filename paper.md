@@ -16,7 +16,7 @@ authors:
   - name: A. M.S. Borin
     orcid: 0000-0001-9303-8291
     affiliation: 1
-  - name: Robson H. Rosa
+  - name: R. H. Rosa
     orcid: 0009-0000-0208-2319
     affiliation: 1    
 affiliations:
