@@ -121,7 +121,7 @@ Ideal for customisation, data analysis, and integration with other Python script
 jupyter notebook
 ```
 
-Open `analise_astronomica_EN.ipynb` from the browser interface. The notebook includes step-by-step instructions in Markdown cells.
+Open `analise_astronomica.ipynb` from the browser interface. The notebook includes step-by-step bilingual (English / Portuguese) instructions in Markdown cells.
 
 ---
 

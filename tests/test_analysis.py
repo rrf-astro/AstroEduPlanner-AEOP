@@ -19,8 +19,14 @@ from src.analysis import (
 
 @pytest.fixture(scope="module")
 def observer_location():
-    """Fixture providing an observer location (São Paulo, Brazil)."""
-    return get_location_from_city("São Paulo, Brazil")
+    """Fixture providing an observer location (São Paulo, Brazil).
+
+    Skips the test module if the geocoding service (Nominatim) is unavailable.
+    """
+    location = get_location_from_city("São Paulo, Brazil")
+    if location is None:
+        pytest.skip("Geocoding service (Nominatim) unavailable — skipping network-dependent tests.")
+    return location
 
 @pytest.fixture(scope="module")
 def observer_timezone(observer_location):
@@ -29,13 +35,25 @@ def observer_timezone(observer_location):
 
 @pytest.fixture(scope="module")
 def southern_target():
-    """Fixture for a target in the southern celestial hemisphere (Sirius)."""
-    return SkyCoord.from_name('Sirius')
+    """Fixture for a target in the southern celestial hemisphere (Sirius).
+
+    Skips the test module if the SIMBAD name-resolution service is unavailable.
+    """
+    try:
+        return SkyCoord.from_name('Sirius')
+    except Exception:
+        pytest.skip("SIMBAD name resolution unavailable — skipping network-dependent tests.")
 
 @pytest.fixture(scope="module")
 def northern_target():
-    """Fixture for a target in the northern celestial hemisphere (Polaris)."""
-    return SkyCoord.from_name('Polaris')
+    """Fixture for a target in the northern celestial hemisphere (Polaris).
+
+    Skips the test module if the SIMBAD name-resolution service is unavailable.
+    """
+    try:
+        return SkyCoord.from_name('Polaris')
+    except Exception:
+        pytest.skip("SIMBAD name resolution unavailable — skipping network-dependent tests.")
 
 def test_calculate_nightly_events(observer_location, observer_timezone):
     """
