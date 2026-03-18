@@ -32,7 +32,7 @@ AstroEduPlanner (AEOP) is an open-source, Python-based tool designed to lower th
 
 The tool exposes two complementary interfaces targeting different user profiles. The first is an interactive web application built with Streamlit [@Streamlit2024], which requires no programming skills: users select their observing site, date, and targets through a graphical sidebar and obtain publication-quality altitude-versus-time plots and annual visibility calendars immediately. The second is a fully documented Jupyter Notebook that exposes the same modular Python backend, allowing students and instructors to inspect, modify, and extend the underlying calculations as part of coursework in observational astronomy or scientific computing.
 
-AEOP resolves target names through the SIMBAD database via Astroquery, computes Solar System body positions for ten objects, estimates lunar interference (illumination fraction and angular separation), and integrates real-time cloud cover forecasts from the Open-Meteo API [@Zippenfenig2023]. The software has been developed with Brazilian public schools and higher education institutions in mind, where access to commercial observatory planning platforms is typically unavailable. Both the Streamlit interface and the Jupyter Notebook are available in English and Brazilian Portuguese, selected via a single sidebar control, reflecting the tool's dual audience of international educators and Brazilian teachers and students for whom operating a scientific tool in a foreign language would constitute an additional and unnecessary barrier.
+AEOP resolves target names through the SIMBAD database via Astroquery, computes Solar System body positions for ten objects, estimates lunar interference (illumination fraction and angular separation), and integrates real-time cloud cover forecasts from the Open-Meteo API [@Zippenfenig2023]. The software has been developed with Brazilian public schools and higher education institutions in mind, where access to commercial observatory planning platforms is typically unavailable. Both the Streamlit interface and the Jupyter Notebook are available in English and Brazilian Portuguese, selected via a single sidebar control, reflecting the tool's dual audience of international educators and Brazilian teachers and students for whom operating a scientific tool in a foreign language would constitute an additional and unnecessary barrier. This version is also available at zenodo [@Ferreira2026].
 
 # Statement of Need
 
@@ -74,6 +74,6 @@ AEOP's core capabilities, verified against the source code in `src/`, include: (
 
 # Acknowledgements
 
-[We acknowledge partial funding from IFTM and any colleagues who contributed to testing or course deployment.]
+We acknowledge partial funding from IFTM and any colleagues who contributed to testing or course deployment.
 
 # References
