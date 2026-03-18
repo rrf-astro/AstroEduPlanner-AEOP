@@ -10,14 +10,17 @@ tags:
   - jupyter
   - open-source
 authors:
-  - name: PLACEHOLDER Full Name of Author 1
-    orcid: 0000-0000-0000-0000
+  - name: R. R. Ferreira
+    orcid: 0000-0001-7255-3489
     affiliation: 1
-  - name: PLACEHOLDER Full Name of Author 2
-    orcid: 0000-0000-0000-0000
-    affiliation: PLACEHOLDER
+  - name: A. M.S. Borin
+    orcid: 0000-0001-9303-8291
+    affiliation: 1
+  - name: Robson H. Rosa
+    orcid: 0009-0000-0208-2319
+    affiliation: 1    
 affiliations:
-  - name: PLACEHOLDER Institution Name, City, Country
+  - name: Federal Institute of Triângulo Mineiro, IFTM, Uberaba-MG, 38064-790, Brazil
     index: 1
 date: 12 March 2026
 bibliography: paper.bib
