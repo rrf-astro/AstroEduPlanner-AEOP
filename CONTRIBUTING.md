@@ -7,7 +7,7 @@ Thank you for your interest in contributing to **AstroEduPlanner (AEOP)**! This 
 1. **Fork the repository**
 2. **Clone your fork**:
    ```bash
-   git clone https://github.com/PLACEHOLDER-username/AstroEduPlanner-AEOP.git
+   git clone https://github.com/rrf-astro/AstroEduPlanner-AEOP.git
    cd AstroEduPlanner-AEOP
    ```
 3. **Create a virtual environment** (recommended):
