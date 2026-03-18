@@ -17,10 +17,10 @@ abstract: >
   objects from any location on Earth, compute lunar interference, and
   integrate real-time weather forecasts.
 authors:
-  - family-names: "PLACEHOLDER"
-    given-names: "PLACEHOLDER"
-    orcid: "https://orcid.org/0000-0000-0000-0000"
-    affiliation: "PLACEHOLDER: Institution Name, Country"
+  - family-names: "Ferreira"
+    given-names: "R.R."
+    orcid: "https://orcid.org/0000-0001-7255-3489"
+    affiliation: "Federal Institute of Triângulo Mineiro, IFTM, Uberaba-MG, 38064-790, Brazil"
 keywords:
   - astronomy
   - education
@@ -35,10 +35,11 @@ keywords:
 preferred-citation:
   type: article
   authors:
-    - family-names: "PLACEHOLDER"
-      given-names: "PLACEHOLDER"
-      orcid: "https://orcid.org/0000-0000-0000-0000"
+    - family-names: "Ferreira"
+      given-names: "R.R."
+      orcid: "https://orcid.org/0000-0001-7255-3489"
+      affiliation: "Federal Institute of Triângulo Mineiro, IFTM, Uberaba-MG, 38064-790, Brazil"
   title: "AstroEduPlanner (AEOP): An Open-Source Python Tool for Astronomical Observation Planning in Educational Contexts"
   journal: "Journal of Open Source Education"
-  year: PLACEHOLDER
-  doi: "PLACEHOLDER"
+  year: 2026
+  doi: ""
