@@ -74,6 +74,6 @@ AEOP's core capabilities, verified against the source code in `src/`, include: (
 
 # Acknowledgements
 
-[PLACEHOLDER: Acknowledge funding sources (CNPq, CAPES, FAPESP, or other) and any colleagues who contributed to testing or course deployment. Example: "The authors thank the students of [course name] at [institution] for feedback during development."]
+[We acknowledge funding sources (CNPq, CAPES, FAPESP, or other) and any colleagues who contributed to testing or course deployment.]
 
 # References
