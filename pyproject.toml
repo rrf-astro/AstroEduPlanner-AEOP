@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.8"
 license = {text = "MIT"}
 authors = [
-    {name = "PLACEHOLDER: Author Full Name", email = "PLACEHOLDER@institution.edu"}
+    {name = "R.R. Ferreira", email = "rafaelferreira@iftm.edu.br"}
 ]
 keywords = ["astronomy", "observation", "planning", "education", "astropy", "open-source"]
 classifiers = [
@@ -54,10 +54,10 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/PLACEHOLDER-username/AstroEduPlanner-AEOP"
-Documentation = "https://github.com/PLACEHOLDER-username/AstroEduPlanner-AEOP/blob/main/README.md"
-Repository = "https://github.com/PLACEHOLDER-username/AstroEduPlanner-AEOP"
-"Bug Tracker" = "https://github.com/PLACEHOLDER-username/AstroEduPlanner-AEOP/issues"
+Homepage = "https://github.com/rrf-astro/AstroEduPlanner-AEOP"
+Documentation = "https://github.com/rrf-astro/AstroEduPlanner-AEOP/blob/main/README.md"
+Repository = "https://github.com/rrf-astro/AstroEduPlanner-AEOP"
+"Bug Tracker" = "https://github.com/rrf-astro/AstroEduPlanner-AEOP/issues"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
