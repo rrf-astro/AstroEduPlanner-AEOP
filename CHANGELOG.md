@@ -38,7 +38,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [Unreleased]
+## [1.5] - 2026-03-18
+
+### Added
+- **Bilingual interface (EN/PT)** — full internationalisation via `src/i18n/strings.py` with 70 UI string keys per language; language selector in the Streamlit sidebar (`st.sidebar.selectbox`); parallel `# EN:` / `# PT:` comments throughout the Jupyter Notebook configuration cell
+- **GitHub Actions CI** — automated test workflow (`.github/workflows/tests.yml`) with matrix across Python 3.10 and 3.11; coverage report via `pytest-cov`
+- **CITATION.cff** — machine-readable software citation in Citation File Format v1.2.0 with full author metadata, ORCID, affiliation, and Zenodo DOI
+- **JOSE submission files** — `paper.md` (all 7 required sections), `paper.bib` (12 BibTeX entries), `figures/fig1_altitude_plot.png` and `figures/fig2_annual_heatmap.png` (both at 300 DPI)
+- **Zenodo DOI** — software archived at [https://doi.org/10.5281/zenodo.19102549](https://doi.org/10.5281/zenodo.19102549)
+- **Network-resilient test suite** — `tests/conftest.py` with `--no-network` CLI flag and `pytest.skip()` guards in all three test modules for Nominatim and SIMBAD dependencies
+
+### Fixed
+- `ValueError: EarthLocation truthiness is ambiguous` in `app.py` — replaced `if observer_location:` with `if observer_location is not None:`
+
+### Changed
+- `pyproject.toml` — corrected project name to `astroedu-planner`; added `[project.optional-dependencies] dev`; added `pythonpath = ["."]` to pytest options; updated all URLs to `github.com/rrf-astro/AstroEduPlanner-AEOP`
+- `README.md` — added CI badge, Zenodo DOI badge, Related Software comparison table, and Citation section
+- All source files (`src/`, `tests/`) — docstrings and inline comments fully translated to English (NumPy-style)
+- CI install step changed from `pip install -r requirements.txt` to `pip install -e .[dev]` to ensure the package is installed in editable mode before tests run
 
 ### Planned
 - Support for custom target catalogues (CSV/FITS)
@@ -49,4 +66,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-[1.0.0]: https://github.com/seu-usuario/Skyler-Testes/releases/tag/v1.0.0
+[1.5]: https://github.com/rrf-astro/AstroEduPlanner-AEOP/releases/tag/v1.5
+[1.0.0]: https://github.com/rrf-astro/AstroEduPlanner-AEOP/releases/tag/v1.0.0
