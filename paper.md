@@ -74,6 +74,6 @@ AEOP's core capabilities, verified against the source code in `src/`, include: (
 
 # Acknowledgements
 
-[We acknowledge funding sources (CNPq, CAPES, FAPESP, or other) and any colleagues who contributed to testing or course deployment.]
+[We acknowledge partial funding from IFTM and any colleagues who contributed to testing or course deployment.]
 
 # References
