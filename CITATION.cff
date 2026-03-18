@@ -2,8 +2,8 @@ cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
 type: software
 title: "AstroEduPlanner (AEOP): An Open-Source Python Tool for Astronomical Observation Planning in Educational Contexts"
-version: "1.0.0"
-date-released: "2025-11-24"
+version: "1.5"
+date-released: "2026-03-18"
 license: MIT
 repository-code: "https://github.com/rrf-astro/AstroEduPlanner-AEOP"
 url: "https://github.com/rrf-astro/AstroEduPlanner-AEOP"
