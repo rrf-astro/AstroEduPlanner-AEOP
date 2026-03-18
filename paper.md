@@ -22,7 +22,7 @@ authors:
 affiliations:
   - name: Federal Institute of Triângulo Mineiro, IFTM, Uberaba-MG, 38064-790, Brazil
     index: 1
-date: 12 March 2026
+date: 18 March 2026
 bibliography: paper.bib
 ---
 
